@@ -18,4 +18,23 @@ class wo extends Model
         'tanggal_ambil',
     ];
     protected $primaryKey = 'id_wo';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(status::class, 'id_status', 'id');
+    }
+
+    public function pelanggan()
+    {
+        return $this->belongsTo(pelanggan::class, 'id_pel', 'id');
+    }
+
+    public function details(){
+        return $this->belongsToMany(wo_detil::class, 'detil_id', 'id');
+    }
 }

@@ -49,6 +49,7 @@ Route::middleware(['auth', 'ceklevel:admin,produksi,marketing,kepala produksi'])
     Route::get('/order', [OrderController::class, 'index'])->name('order');
     Route::get('/tambahitem', [OrderController::class, 'tambahitem'])->name('tambahitem');
     Route::post('/insert_wo', [OrderController::class, 'insert_wo'])->name('insert_wo');
+    Route::post('/masukkan', [OrderController::class, 'store']);
     Route::get('/tambahorder', [OrderController::class, 'tambahorder'])->name('tambahorder');
     Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan'); 
     Route::get('/tambahpelanggan', [PelangganController::class, 'tambahpelanggan'])->name('tambahpelanggan');

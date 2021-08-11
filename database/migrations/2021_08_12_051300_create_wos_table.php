@@ -14,11 +14,11 @@ class CreateWosTable extends Migration
     public function up()
     {
         Schema::create('wos', function (Blueprint $table) {
-            $table->bigIncrements('id_wo');
+            $table->id();
             $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->date('tanggal_masuk');
-            $table->integer('no_wo');
+            $table->char('no_wo', 80);
             $table->date('deadline');
             $table->bigInteger('id_pel')->unsigned();
             $table->foreign('id_pel')->references('id_pel')->on('pelanggans')->onDelete('cascade');

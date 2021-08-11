@@ -19,13 +19,14 @@
         <!-- /.card-header -->
         <!-- form start -->
         
-        <form action="{{route('beranda')}}" method="POST">
+        <form action="/masukkan" method="POST">
             {{ csrf_field()  }}
+            <input type="hidden" name="wo_id[]" value="1">
             <div class="card-body">
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tanggal Masuk</label>
                 <div class="col-sm-4">
-                  <input type="text" disabled name="no_wo" class="form-control" value="{{ $t_masuk }}" >
+                  <input type="date" name="tanggal_masuk" class="form-control" value="{{ $t_masuk }}" >
                 </div>
                 <label class="col-sm-2 col-form-label">Deadline</label>
                 <div class="col-sm-4">
@@ -35,9 +36,9 @@
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label">Nama</label>
                   <div class="col-sm-4">
-                    <select class="form-control select2" style="width: 100%;" name="id_pel">
+                    <select class="form-control" style="width: 100%;" name="id_pel">
                       @foreach ($data_pelanggan as $item)
-                      <option value="{{ $item->id }}"> 
+                      <option value="{{ $item->id }}" name="id_pel"> 
                           {{ $item->nama_pel }} ({{ $item->telp }}) 
                       </option>
                   @endforeach 
@@ -64,12 +65,22 @@
                         </option>
                     @endforeach 
                       </select>
+                    </div>
+                    <div class="col-sm-4">
+                      <select class="form-control select2" multiple style="width: 100%;" name="details[]">
+                        @foreach ($details as $detail)
+                        <option value="{{ $detail->id }}"> 
+                            {{ $detail->nama_order }}
+                        </option>
+                    @endforeach 
+                      </select>
                     </div>                   
                   </div>
                   <div class="form-group row">
                     
                     <div class="col-sm-4">
-                      <a class="btn btn-success" href="{{route('tambahitem')}}" method="POST">Tambah Item</a>
+                      <a class="btn btn-success" href="{{route('tambahitem')}}">Tambah Item</a>
+                      <a href="/excel" class="btn btn-info">Print</a>
                     </div>                   
                   </div>
                   <div class="card">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWoDetilsTable extends Migration
+class CreateDetilsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateWoDetilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('wo_detils', function (Blueprint $table) {
-            $table->bigIncrements('wo_detil');
-            $table->bigInteger('id_wo')->unsigned();
-            $table->foreign('id_wo')->references('id_wo')->on('wos')->onDelete('cascade');
+        Schema::create('detils', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('id_kategori')->unsigned();
             $table->foreign('id_kategori')->references('id_kategori')->on('kategoris')->onDelete('cascade');
             $table->bigInteger('id_user')->unsigned();
@@ -42,6 +40,6 @@ class CreateWoDetilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wo_detils');
+        Schema::dropIfExists('detils');
     }
 }

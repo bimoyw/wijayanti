@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class wo_detil extends Model
 {
+    protected $table = "detils";
+
     protected $fillable = [
         'id_kategori',
-        'id_wo',
         'id_user',
         'id_status',
         'nama_order',
@@ -21,12 +22,11 @@ class wo_detil extends Model
         'jenis_bahan',
         'keterangan',
     ];
-    protected $table = 'wo_detils';
     protected $primaryKey = 'wo_detil';
-    public function wos()
-    {
-        return $this->belongsTo(wo::class);
-    }
+    // public function wos()
+    // {
+    //     return $this->belongsTo(wo::class);
+    // }
     public function kategoris()
     {
         return $this->hasMany(kategori::class);
@@ -38,5 +38,9 @@ class wo_detil extends Model
     public function users()
     {
         return $this->belongsToMany(user::class);
+    }
+
+    public function wos(){
+        return $this->belongsToMany(wo::class, 'wo_id', 'id');
     }
 }

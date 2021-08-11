@@ -1,0 +1,37 @@
+$table->id();
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->date('tanggal_masuk');
+            $table->char('no_wo', 80);
+            $table->date('deadline');
+            $table->bigInteger('id_pel')->unsigned();
+            $table->foreign('id_pel')->references('id_pel')->on('pelanggans')->onDelete('cascade');
+            $table->date('tanggal_ambil');
+            $table->timestamps();
+
+
+
+            $table->id();
+            $table->bigInteger('id_kategori')->unsigned();
+            $table->foreign('id_kategori')->references('id_kategori')->on('kategoris')->onDelete('cascade');
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('id_status')->unsigned();
+            $table->foreign('id_status')->references('id_status')->on('statuses')->onDelete('cascade');
+            $table->string('nama_order');
+            $table->bigInteger('jumlah')->unsigned();
+            $table->bigInteger('h_satuan')->unsigned();
+            $table->bigInteger('totalbayar')->unsigned();
+            $table->string('ukuran')->nullable();
+            $table->string('warna')->nullable();
+            $table->string('jenis_bahan')->nullable();
+            $table->string('keterangan')->nullable();            
+            $table->timestamps();
+
+
+            $table->id();
+            $table->unsignedBigInteger('wo_id');
+            $table->foreign('wo_id')->references('id')->on('wos')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('detil_id');
+            $table->foreign('detil_id')->references('id')->on('detils')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
